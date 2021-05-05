@@ -121,7 +121,9 @@ export default function TabOneScreen() {
       <View key={idx} style={styles.itemContainer}>
         <TouchableOpacity 
           style={styles.itemButton}
-          onPress={() => navigation.navigate('Chapters')}
+          onPress={() => navigation.navigate('Chapters', {
+            paramKey: item.name
+          })}
         >
           <Text style={styles.itemName}>{item.name}</Text>
         </TouchableOpacity>

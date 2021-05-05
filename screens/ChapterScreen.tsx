@@ -12,6 +12,7 @@ import {
   } from 'react-native';
 import { useEffect, useState } from 'react';
 import { fetchBooks } from '../assets/services/bible-api';
+import { useNavigation } from '@react-navigation/native'
 
 export default function ChapterScreen() {
     const bookChapterCount = [
@@ -83,6 +84,8 @@ export default function ChapterScreen() {
         {count: 22, name: 'Revelation'}
     ]
 
+    const navigation = useNavigation()
+
     const chapterArray = []
 
     const separator = () => {
@@ -90,22 +93,24 @@ export default function ChapterScreen() {
       }
 
     const renderItem = ({item, idx}) => {
-    return (
-        <View key={idx} style={styles.itemContainer}>
-        <TouchableOpacity style={styles.itemButton}>
-            <Text style={styles.itemName}>{item.name}</Text>
-        </TouchableOpacity>
-        </View>
-    )
+        return (
+            <View key={idx} style={styles.itemContainer}>
+            <TouchableOpacity style={styles.itemButton} onPress={() => {navigation.goBack()}}>
+                <Text style={styles.itemName}>{item.name}</Text>
+            </TouchableOpacity>
+            </View>
+        )
     }
 
     return (
-        <FlatList
-        data={bookChapterCount}
-        keyExtractor={(e, i) => i.toString()}
-        renderItem={renderItem}
-        ItemSeparatorComponent={separator}
-      />
+        <View>
+            <FlatList
+                data={bookChapterCount}
+                keyExtractor={(e, i) => i.toString()}
+                renderItem={renderItem}
+                ItemSeparatorComponent={separator}
+            />
+        </View>
     )
 }
 
