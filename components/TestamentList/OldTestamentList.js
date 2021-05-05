@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+
+const {width, height} = Dimensions.get('screen')
 
 const OldTestamentList = (props) => {
 
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      padding: 10,
+      padding: 15,
     },
     buttonText: {
       fontSize: 20,
