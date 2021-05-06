@@ -21,32 +21,6 @@ const {width, height} = Dimensions.get('screen')
 
 export default function TabOneScreen() {
 
-  const navigation = useNavigation()
-  const [ bookList, setBookList ] = useState([])
-  const [ dataList, setDataList ] = useState(data)
-  const [ status, setStatus ] = useState('Old Testament')
-
-  const setStatusFilter = status => {
-    if (status === 'Old Testament') {
-      setDataList([...data.filter(e => e.test === 'old')])
-    } else {
-      setDataList([...data.filter(e => e.test === 'new')])
-    }
-    setStatus(status)
-  }
-
-  async function getBookInfo() {
-    const data = await fetchBooks()
-    const booksArray = Object.keys(data)
-    setBookList(data)
-  }
-
-  useEffect(() => {
-    getBookInfo()
-  }, [])
-
-  const bookTabs = [{title: 'Old Testament'}, {title: 'New Testament'}]
-
   const data = [
     {test: 'old', name: 'Genesis'},
     {test: 'old', name: 'Exodus'},
@@ -116,6 +90,32 @@ export default function TabOneScreen() {
     {test: 'new', name: 'Revelation'}
   ]
 
+  const navigation = useNavigation()
+  const [ bookList, setBookList ] = useState([])
+  const [ dataList, setDataList ] = useState(data)
+  const [ status, setStatus ] = useState('Old Testament')
+
+  const setStatusFilter = status => {
+    if (status === 'Old Testament') {
+      setDataList([...data.filter(e => e.test === 'old')])
+    } else {
+      setDataList([...data.filter(e => e.test === 'new')])
+    }
+    setStatus(status)
+  }
+
+  async function getBookInfo() {
+    const data = await fetchBooks()
+    const booksArray = Object.keys(data)
+    setBookList(data)
+  }
+
+  useEffect(() => {
+    getBookInfo()
+  }, [])
+
+  const bookTabs = [{title: 'Old Testament'}, {title: 'New Testament'}]
+
   const renderItem = ({item, idx}) => {
     return (
       <View key={idx} style={styles.itemContainer}>
@@ -158,14 +158,7 @@ export default function TabOneScreen() {
           renderItem={renderItem}
           ItemSeparatorComponent={separator}
         />
-
       </SafeAreaView>
-      {/* <View style={styles.container}>
-        <ScrollView>
-          <OldTestamentList />
-          <NewTestamentList />
-        </ScrollView>
-      </View> */}
     </>
   );
 }

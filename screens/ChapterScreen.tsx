@@ -14,79 +14,85 @@ import { useEffect, useState } from 'react';
 import { fetchBooks } from '../assets/services/bible-api';
 import { useNavigation } from '@react-navigation/native'
 
-export default function ChapterScreen() {
-    const bookChapterCount = [
-        {count: 50, name: 'Genesis'},
-        {count: 40, name: 'Exodus'},
-        {count: 27, name: 'Leviticus'},
-        {count: 36, name: 'Numbers'},
-        {count: 34, name: 'Deuteronomy'},
-        {count: 24, name: 'Joshua'},
-        {count: 21, name: 'Judges'},
-        {count: 4, name: 'Ruth'},
-        {count: 31, name: '1 Samuel'},
-        {count: 24, name: '2 Samuel'},
-        {count: 22, name: '1 Kings'}, 
-        {count: 25, name: '2 Kings'}, 
-        {count: 29, name: '1 Chronicles'}, 
-        {count: 36, name: '2 Chronicles'}, 
-        {count: 10, name: 'Ezra'}, 
-        {count: 13, name: 'Nehemiah'}, 
-        {count: 10, name: 'Esther'}, 
-        {count: 42, name: 'Job'}, 
-        {count: 150, name: 'Psalm'}, 
-        {count: 31, name: 'Proverbs'}, 
-        {count: 12, name: 'Ecclesiastes'}, 
-        {count: 8, name: 'Song of Solomon'}, 
-        {count: 66, name: 'Isaiah'}, 
-        {count: 52, name: 'Jeremiah'}, 
-        {count: 5, name: 'Lamentations'}, 
-        {count: 48, name: 'Ezekiel'}, 
-        {count: 12, name: 'Daniel'}, 
-        {count: 14, name: 'Hosea'}, 
-        {count: 3, name: 'Joel'}, 
-        {count: 9, name: 'Amos'}, 
-        {count: 1, name: 'Obadiah'}, 
-        {count: 4, name: 'Jonah'}, 
-        {count: 7, name: 'Micah'}, 
-        {count: 3, name: 'Nahum'}, 
-        {count: 3, name: 'Habakkuk'}, 
-        {count: 3, name: 'Zephaniah'}, 
-        {count: 2, name: 'Haggai'}, 
-        {count: 14, name: 'Zechariah'}, 
-        {count: 4, name: 'Malachi'},
-        {count: 28, name: 'Matthew'},
-        {count: 16, name: 'Mark'},
-        {count: 24, name: 'Luke'},
-        {count: 21, name: 'John'},
-        {count: 28, name: 'Acts'},
-        {count: 16, name: 'Romans'},
-        {count: 16, name: '1 Corinthians'},
-        {count: 13, name: '2 Corinthians'},
-        {count: 6, name: 'Galatians'},
-        {count: 6, name: 'Ephesians'},
-        {count: 4, name: 'Philippians'},
-        {count: 4, name: 'Colossians'},
-        {count: 5, name: '1 Thessalonians'},
-        {count: 3, name: '2 Thessalonians'},
-        {count: 6, name: '1 Timothy'},
-        {count: 4, name: '2 Timothy'},
-        {count: 3, name: 'Titus'},
-        {count: 1, name: 'Philemon'},
-        {count: 13, name: 'Hebrews'},
-        {count: 5, name: 'James'},
-        {count: 5, name: '1 Peter'},
-        {count: 3, name: '2 Peter'},
-        {count: 5, name: '1 John'},
-        {count: 1, name: '2 John'},
-        {count: 1, name: '3 John'},
-        {count: 1, name: 'Jude'},
-        {count: 22, name: 'Revelation'}
-    ]
+export default function ChapterScreen({route}) {
+
+    const bookChapterCount = {
+        'Genesis': 50,
+        'Exodus': 40,
+        'Leviticus': 27,
+        'Numbers': 36,
+        'Deuteronomy': 34,
+        'Judges': 21,
+        'Ruth': 4,
+        '1 Samuel': 31,
+        '2 Samuel': 24,
+        '1 Kings': 22, 
+        '2 Kings': 25,
+        '1 Chronicles': 29,
+        '2 Chronicles': 36, 
+        'Ezra': 10, 
+        'Nehemiah': 13, 
+        'Esther': 10, 
+        'Job': 42, 
+        'Psalm': 150, 
+        'Proverbs': 31, 
+        'Ecclesiastes': 12, 
+        'Song of Solomon': 8, 
+        'Isaiah': 66, 
+        'Jeremiah': 52, 
+        'Lamentations': 5, 
+        'Ezekiel': 48, 
+        'Daniel': 12, 
+        'Hosea': 14, 
+        'Joel': 3, 
+        'Amos': 9, 
+        'Obadiah': 1, 
+        'Jonah': 4, 
+        'Micah': 7, 
+        'Nahum': 3, 
+        'Habakkuk': 3, 
+        'Zephaniah': 3, 
+        'Haggai': 2, 
+        'Zechariah': 14,
+        'Malachi': 4,
+        'Matthew': 28,
+        'Mark': 16,
+        'Luke': 24,
+        'John': 21,
+        'Acts': 28,
+        'Romans': 16,
+        '1 Corinthians': 16,
+        '2 Corinthians': 13,
+        'Galatians': 6,
+        'Ephesians': 6,
+        'Philippians': 4,
+        'Colossians': 4,
+        '1 Thessalonians': 5,
+        '2 Thessalonians': 3,
+        '1 Timothy': 6,
+        '2 Timothy': 4,
+        'Titus': 3,
+        'Philemon': 1,
+        'Hebrews': 13,
+        'James': 5,
+        '1 Peter': 5,
+        '2 Peter': 3,
+        '1 John': 5,
+        '2 John': 1,
+        '3 John': 1,
+        'Jude': 1,
+        'Revelation': 22
+    }
+
+    const bookSelected = route.params.paramKey
+
+    let chapterArray = []
+    var i
+    for (i = 0; i < bookChapterCount[`${bookSelected}`]; i++) {
+        chapterArray.push(`Chapter ${i+1}`)
+    }
 
     const navigation = useNavigation()
-
-    const chapterArray = []
 
     const separator = () => {
         return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
@@ -95,22 +101,26 @@ export default function ChapterScreen() {
     const renderItem = ({item, idx}) => {
         return (
             <View key={idx} style={styles.itemContainer}>
-            <TouchableOpacity style={styles.itemButton} onPress={() => {navigation.goBack()}}>
-                <Text style={styles.itemName}>{item.name}</Text>
-            </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.itemButton}
+                    onPress={() => {navigation.goBack()}}
+                >
+                    <Text style={styles.itemName}>{item}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
 
     return (
-        <View>
+        <SafeAreaView style={styles.tabContainer}>
+            <Text style={styles.chapterHeader}>{bookSelected}</Text>
             <FlatList
-                data={bookChapterCount}
+                data={chapterArray}
                 keyExtractor={(e, i) => i.toString()}
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -158,16 +168,24 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
       flexDirection: 'row',
-      paddingVertical: 15
+      paddingVertical: 15,
+      backgroundColor: 'white'
     },
     itemButton: {
       flex: 1,
       paddingHorizontal: 2,
       paddingVertical: 12,
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     itemName: {
       fontWeight: 'bold',
       fontSize: 20
+    },
+    chapterHeader: {
+        alignSelf: 'center',
+        fontSize: 18,
+        fontWeight: '600',
+        marginTop: 9,
+        marginBottom: 20
     }
   })
