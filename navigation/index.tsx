@@ -12,6 +12,7 @@ import { ColorSchemeName } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ChapterScreen from '../screens/ChapterScreen';
+import PassageScreen from '../screens/PassageScreen';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -37,6 +38,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="Chapters" component={ChapterScreen} />
+      <Stack.Screen name="Passages" component={PassageScreen} />
     </Stack.Navigator>
   );
 }

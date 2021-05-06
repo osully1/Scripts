@@ -11,7 +11,6 @@ import {
     Image
   } from 'react-native';
 import { useEffect, useState } from 'react';
-import { fetchBooks } from '../assets/services/bible-api';
 import { useNavigation } from '@react-navigation/native'
 
 export default function ChapterScreen({route}) {
@@ -34,7 +33,7 @@ export default function ChapterScreen({route}) {
         'Nehemiah': 13, 
         'Esther': 10, 
         'Job': 42, 
-        'Psalm': 150, 
+        'Psalms': 150, 
         'Proverbs': 31, 
         'Ecclesiastes': 12, 
         'Song of Solomon': 8, 
@@ -98,12 +97,16 @@ export default function ChapterScreen({route}) {
         return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
       }
 
-    const renderItem = ({item, idx}) => {
+    const renderItem = ({item, index}) => {
         return (
-            <View key={idx} style={styles.itemContainer}>
+            <View key={index} style={styles.itemContainer}>
                 <TouchableOpacity
                     style={styles.itemButton}
-                    onPress={() => {navigation.goBack()}}
+                    onPress={() =>  {
+                        console.log(index)
+                        navigation.navigate('Passages', {
+                          paramKey: [bookSelected, index + 1]
+                    })}}
                 >
                     <Text style={styles.itemName}>{item}</Text>
                 </TouchableOpacity>

@@ -11,10 +11,6 @@ import {
 import { useEffect, useState } from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { fetchBooks } from '../assets/services/bible-api';
-import OldTestamentList from '../components/TestamentList/OldTestamentList'
-import NewTestamentList from '../components/TestamentList/NewTestamentList'
-import Navigation from '../navigation';
 import { useNavigation } from '@react-navigation/native'
 
 const {width, height} = Dimensions.get('screen')
@@ -40,7 +36,7 @@ export default function TabOneScreen() {
     {test: 'old', name: 'Nehemiah'}, 
     {test: 'old', name: 'Esther'}, 
     {test: 'old', name: 'Job'}, 
-    {test: 'old', name: 'Psalm'}, 
+    {test: 'old', name: 'Psalms'}, 
     {test: 'old', name: 'Proverbs'}, 
     {test: 'old', name: 'Ecclesiastes'}, 
     {test: 'old', name: 'Song of Solomon'}, 
@@ -91,28 +87,19 @@ export default function TabOneScreen() {
   ]
 
   const navigation = useNavigation()
-  const [ bookList, setBookList ] = useState([])
   const [ dataList, setDataList ] = useState(data)
   const [ status, setStatus ] = useState('Old Testament')
+  // May use below state array to set active button styles
+  // const [ isPressed, setIsPressed ] = useState([false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false])
 
   const setStatusFilter = status => {
+    setStatus(status)
     if (status === 'Old Testament') {
       setDataList([...data.filter(e => e.test === 'old')])
     } else {
       setDataList([...data.filter(e => e.test === 'new')])
     }
-    setStatus(status)
   }
-
-  async function getBookInfo() {
-    const data = await fetchBooks()
-    const booksArray = Object.keys(data)
-    setBookList(data)
-  }
-
-  useEffect(() => {
-    getBookInfo()
-  }, [])
 
   const bookTabs = [{title: 'Old Testament'}, {title: 'New Testament'}]
 
@@ -121,9 +108,10 @@ export default function TabOneScreen() {
       <View key={idx} style={styles.itemContainer}>
         <TouchableOpacity 
           style={styles.itemButton}
-          onPress={() => navigation.navigate('Chapters', {
-            paramKey: item.name
-          })}
+          onPress={() =>  {
+            navigation.navigate('Chapters', {
+              paramKey: item.name
+          })}}
         >
           <Text style={styles.itemName}>{item.name}</Text>
         </TouchableOpacity>
@@ -214,6 +202,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     paddingVertical: 12,
     justifyContent: 'center'
+  },
+  itemButtonActive: {
+    flex: 1,
+    paddingHorizontal: 2,
+    paddingVertical: 12,
+    justifyContent: 'center',
+    backgroundColor: '#B2081C'
   },
   itemName: {
     fontWeight: 'bold',
