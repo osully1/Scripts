@@ -8,7 +8,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { useState } from 'react'
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, Text } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ChapterScreen from '../screens/ChapterScreen';
@@ -37,8 +37,8 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Screen name="Chapters" component={ChapterScreen} />
-      <Stack.Screen name="Passages" component={PassageScreen} />
+      {/* <Stack.Screen name="Chapters" component={ChapterScreen} />
+      <Stack.Screen name="Passages" component={PassageScreen} /> */}
     </Stack.Navigator>
   );
 }

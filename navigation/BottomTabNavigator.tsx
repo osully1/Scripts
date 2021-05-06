@@ -6,15 +6,19 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, BibleParamList } from '../types';
+import ChapterScreen from '../screens/ChapterScreen';
+import PassageScreen from '../screens/PassageScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const AddBibleStack = createStackNavigator<BibleParamList>()
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();

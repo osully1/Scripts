@@ -20,3 +20,9 @@ export type TabOneParamList = {
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };
+
+export type BibleParamList = {
+  BookScreen: undefined;
+  ChapterScreen: undefined;
+  PassageScreen: undefined;
+}
