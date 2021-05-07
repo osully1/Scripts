@@ -14,21 +14,25 @@ export default function TabOneScreen() {
 
   const AddBibleStack = createStackNavigator<BibleParamList>()
 
-  const [ noteState, setNoteState ] = useState({notes: []})
+  const [ noteState, setNoteState ] = useState({})
   const [ currentPassage, setCurrentPassage ] = useState({book: '', chapter: null, verse: null})
+
+
 
   useEffect(() => {
     const acquireNotes = async () => {
-      const notes = await fetch('http://localhost:3000/notes')
+      console.log('fetching data')
+      const notes = await fetch('http://30a0010044eb.ngrok.io/notes')
         .then(res => res.json())
-      setNoteState({ notes })
+      console.log(notes)
+      setNoteState(notes)
     }
     acquireNotes()
   }, [])
 
   const addNoteToList = async (noteObject) => {
     try {
-      const note = await fetch('http://localhost:3000/notes', {
+      const note = await fetch('http://30a0010044eb.ngrok.io/notes', {
         body: JSON.stringify(noteObject),
         method: 'POST',
         headers: {
@@ -48,13 +52,22 @@ export default function TabOneScreen() {
   return (
     <AddBibleStack.Navigator>
       <AddBibleStack.Screen name="Books">
-        {(props) => <BookScreen {...props} currentPassage={currentPassage} setCurrentPassage={setCurrentPassage} />}
+        {(props) => <BookScreen {...props}
+          currentPassage={currentPassage}
+          setCurrentPassage={setCurrentPassage} 
+        />}
       </AddBibleStack.Screen>
       <AddBibleStack.Screen name="Chapters">
-        {(props) => <ChapterScreen {...props} currentPassage={currentPassage} setCurrentPassage={setCurrentPassage} />}
+        {(props) => <ChapterScreen {...props}
+          currentPassage={currentPassage}
+          setCurrentPassage={setCurrentPassage}
+        />}
       </AddBibleStack.Screen>
       <AddBibleStack.Screen name="Passages">
-        {(props) => <PassageScreen {...props} currentPassage={currentPassage} setCurrentPassage={setCurrentPassage} />}
+        {(props) => <PassageScreen {...props}
+          currentPassage={currentPassage}
+          setCurrentPassage={setCurrentPassage}
+        />}
       </AddBibleStack.Screen>
       <AddBibleStack.Screen name="AddNote">
         {(props) => <AddNoteScreen {...props} 

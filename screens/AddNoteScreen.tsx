@@ -16,30 +16,8 @@ export default function AddNoteScreen(props) {
 
     const [ noteText, setNoteText ] = useState('')
 
-    // const currentVerse = route.param.paramKey[2]
-
-    // useEffect(() => {
-    //     props.setCurrentPassage(prevState => ({
-    //         ...prevState,
-    //         verse: route.params.paramKey[2]
-    //     }))
-    // }, [currentVerse])
-
     return (
-        // <View>
-        //     <TextInput
-        //         style={{height: 200}}
-        //         placeholder='Add Note'
-        //         onChangeText={text => setNoteText(text)}
-        //         defaultValue={noteText}
-        //         keyboardAppearance='dark'
-        //         multiline='true'
-        //         returnKeyType='done'
-        //         // onSubmitEditing={}
-        //     />
-        //     <Text style={{padding: 10, fontSize: 42}}>
-        //     </Text>
-        // </View>
+        
         <NoteInput 
             noteText={noteText}
             setNoteText={setNoteText}

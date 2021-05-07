@@ -25,7 +25,8 @@ export default function NoteInput(props) {
       <TextInput
           style={{
             height: 120,
-            borderWidth: 1
+            borderWidth: 1,
+            backgroundColor: '#fff'
           }}
           placeholder='Add Note'
           onChangeText={text => 
@@ -43,10 +44,27 @@ export default function NoteInput(props) {
       />
       <Text style={{padding: 10, fontSize: 42}} />
       <TouchableOpacity
+        style={styles.button}
         onPress={() => handleSubmit()}
       >
-        <Text>Submit</Text>
+        <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#EBEBEB',
+    backgroundColor: '#fff',
+    width: '37%',
+    height: 50,
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
