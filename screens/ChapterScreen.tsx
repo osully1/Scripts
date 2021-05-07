@@ -4,16 +4,15 @@ import {
     Text,
     View,
     TouchableOpacity,
-    ScrollView,
     Dimensions,
     SafeAreaView,
     FlatList,
     Image
   } from 'react-native';
-import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
+import { useEffect, useState } from 'react';
 
-export default function ChapterScreen({route}) {
+export default function ChapterScreen(props) {
 
     const bookChapterCount = {
         'Genesis': 50,
@@ -83,7 +82,7 @@ export default function ChapterScreen({route}) {
         'Revelation': 22
     }
 
-    const bookSelected = route.params.paramKey
+    const bookSelected = props.currentPassage.book
 
     let chapterArray = []
     var i
@@ -103,7 +102,7 @@ export default function ChapterScreen({route}) {
                 <TouchableOpacity
                     style={styles.itemButton}
                     onPress={() =>  {
-                        console.log(index)
+                        props.setCurrentPassage({book: bookSelected, chapter: index + 1})
                         navigation.navigate('Passages', {
                           paramKey: [bookSelected, index + 1]
                     })}}

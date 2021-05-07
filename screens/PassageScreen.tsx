@@ -4,25 +4,24 @@ import {
     Text,
     View,
     TouchableOpacity,
-    ScrollView,
     Dimensions,
     SafeAreaView,
     FlatList,
     Image
   } from 'react-native';
 import { useEffect, useState } from 'react';
-import { fetchVerses } from '../assets/services/bible-api';
 import { fetchMegaVerse } from '../assets/services/bible-api';
 import { useNavigation } from '@react-navigation/native'
+import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
-export default function ChapterScreen({route}) {
+export default function ChapterScreen(props) {
 
     const navigation = useNavigation()
 
     const [ verseArray, setVerseArray ] = useState('')
 
-    const currentBook = route.params.paramKey[0]
-    const currentChapter = route.params.paramKey[1]
+    const currentBook = props.currentPassage.book
+    const currentChapter = props.currentPassage.chapter
 
     async function verseSplit () {
         const data = await fetchMegaVerse(currentBook, currentChapter)
@@ -33,6 +32,7 @@ export default function ChapterScreen({route}) {
 
     useEffect(() => {
         verseSplit()
+        props.setCurrentPassage({book: currentBook, chapter: currentChapter, verse: null})
     }, [currentChapter])
 
     const renderItem = ({item, index}) => {
@@ -40,6 +40,11 @@ export default function ChapterScreen({route}) {
           <View key={index} style={styles.itemContainer}>
             <TouchableOpacity 
               style={styles.itemButton}
+              onPress={() =>  {
+                props.setCurrentPassage({book: currentBook, chapter: currentChapter, verse: index + 1})
+                navigation.navigate('AddNote', {
+                  paramKey: [currentBook, currentChapter, index + 1]
+                })}}
             >
               <Text style={styles.itemName}>{item}</Text>
             </TouchableOpacity>

@@ -25,4 +25,5 @@ export type BibleParamList = {
   BookScreen: undefined;
   ChapterScreen: undefined;
   PassageScreen: undefined;
+  AddNoteScreen: undefined;
 }

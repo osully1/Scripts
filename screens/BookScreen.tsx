@@ -2,20 +2,19 @@ import * as React from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
   Dimensions,
   SafeAreaView,
   FlatList,
   Image
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { useNavigation } from '@react-navigation/native'
+import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
 const {width, height} = Dimensions.get('screen')
 
-export default function BookScreen() {
+export default function BookScreen(props) {
 
   const data = [
     {test: 'old', name: 'Genesis'},
@@ -103,15 +102,17 @@ export default function BookScreen() {
 
   const bookTabs = [{title: 'Old Testament'}, {title: 'New Testament'}]
 
-  const renderItem = ({item, idx}) => {
+  const renderItem = ({item, index}) => {
     return (
-      <View key={idx} style={styles.itemContainer}>
+      <View key={index} style={styles.itemContainer}>
         <TouchableOpacity 
           style={styles.itemButton}
           onPress={() =>  {
+            props.setCurrentPassage({book: item.name, chapter: null, verse: null})
             navigation.navigate('Chapters', {
               paramKey: item.name
-          })}}
+            })
+        }}
         >
           <Text style={styles.itemName}>{item.name}</Text>
         </TouchableOpacity>
