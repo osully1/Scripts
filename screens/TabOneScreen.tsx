@@ -48,7 +48,24 @@ export default function TabOneScreen() {
     }
   }
 
-  
+  const handleUpdate = async (formInputs) => {
+    try {
+      await fetch(`http://92549b72a175.ngrok.io/notes/${formInputs.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(formInputs)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    const noteIdx = noteState.findIndex(note => note.id === formInputs.id)
+    const updatedNoteArray = noteState
+    updatedNoteArray.splice(noteIdx, 1, formInputs)
+    setNoteState(updatedNoteArray)
+    console.log(updatedNoteArray)
+  }
 
   return (
     <AddBibleStack.Navigator>
@@ -75,6 +92,7 @@ export default function TabOneScreen() {
           noteState={noteState}
           setNoteState={setNoteState}
           addNoteToList={addNoteToList}
+          handleUpdate={handleUpdate}
           currentPassage={currentPassage}
           setCurrentPassage={setCurrentPassage}
         />}

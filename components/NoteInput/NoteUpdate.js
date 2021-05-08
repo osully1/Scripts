@@ -15,15 +15,30 @@ import { useNavigation } from '@react-navigation/native'
 export default function NoteUpdate(props) {
 
   const [ updateText, setUpdateText ] = useState({content: '', book: '', chapter: null, verse: null})
-  const [ formState, setFormState ] = useState('')
+  const [ formState, setFormState ] = useState({
+      id: null,
+      content: '',
+      book: '',
+      chapter: null,
+      verse: null
+  })
 
   useEffect(() => {
-    setFormState(props.item)
+    setFormState({
+        id: props.item.id,
+        content: '',
+        book: props.currentPassage.book,
+        chapter: props.currentPassage.chapter,
+        verse: props.currentPassage.verse
+    })
+    // console.log(props.item)
   }, [props.item])
 
   const handleSubmit = () => {
     props.setEditFormVisible(!props.editFormVisible)
-    // CREATE UPDATE FUNCTION IN TABONESCREEN AND PASS HERE AS PROPS
+    props.setUpdateText(formState.content)
+    console.log(formState)
+    props.handleUpdate(formState)
   }
 
   return(
@@ -36,14 +51,13 @@ export default function NoteUpdate(props) {
           }}
         //   placeholder='Add Note'
           onChangeText={text => 
-            setUpdateText({
-              content: text,
-              book: props.currentPassage.book,
-              chapter: props.currentPassage.chapter,
-              verse: props.currentPassage.verse  
-            })
+            setFormState(prevState => ({
+                ...prevState,
+              content: text,  
+            }))
           }
-          value={props.item.content}
+          defaultValue={props.item.content}
+          editable={true}
           keyboardAppearance='dark'
           multiline={true}
           // onSubmitEditing={}

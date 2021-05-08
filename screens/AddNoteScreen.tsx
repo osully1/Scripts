@@ -16,8 +16,6 @@ import NoteListItem from '../components/NoteListItem/NoteListItem'
 
 export default function AddNoteScreen(props) {
 
-    const [ noteText, setNoteText ] = useState('')
-
     const currentBook = props.currentPassage.book
     const currentChapter = props.currentPassage.chapter
     const currentVerse = props.currentPassage.verse
@@ -29,15 +27,14 @@ export default function AddNoteScreen(props) {
     const renderItem = ({item, index}) => {
         return (
             <NoteListItem 
-                noteText={noteText}
-                setNoteText={setNoteText}
+                item={item}
+                index={index}
                 noteState={props.noteState}
                 setNoteState={props.setNoteState}
                 addNoteToList={props.addNoteToList}
+                handleUpdate={props.handleUpdate}
                 currentPassage={props.currentPassage}
                 setCurrentPassage={props.setCurrentPassage}
-                item={item}
-                index={index}
             />
         )
       }

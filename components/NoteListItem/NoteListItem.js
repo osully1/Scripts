@@ -15,12 +15,16 @@ import NoteUpdate from '../NoteInput/NoteUpdate'
 
 export default function NoteListItem(props) {
 
-  const [ updateText, setUpdateText ] = useState({content: '', book: '', chapter: null, verse: null})
   const [editFormVisible, setEditFormVisible] = useState(false)
+  const [ updateText, setUpdateText ] = useState('')
 
   const toggleForm = () => {
       setEditFormVisible(!editFormVisible);
   }
+
+  useEffect(() => {
+    setUpdateText(props.item.content)
+  }, [])
 
   return(
     <View key={props.index} style={styles.itemContainer}>
@@ -28,15 +32,14 @@ export default function NoteListItem(props) {
             editFormVisible ?
             <NoteUpdate 
                 item={props.item}
-                noteText={props.noteText}
-                setNoteText={props.setNoteText}
                 noteState={props.noteState}
                 setNoteState={props.setNoteState}
-                addNoteToList={props.addNoteToList}
+                handleUpdate={props.handleUpdate}
                 currentPassage={props.currentPassage}
                 setCurrentPassage={props.setCurrentPassage}
                 editFormVisible={editFormVisible}
                 setEditFormVisible={setEditFormVisible}
+                setUpdateText={setUpdateText}
             />
             :
             <View key={props.index} style={styles.itemContainer}>
@@ -44,7 +47,7 @@ export default function NoteListItem(props) {
                     style={styles.itemButton}
                     onPress={() =>  {toggleForm()}}
                 >
-                    <Text style={styles.itemName}>{props.item.content}</Text>
+                    <Text style={styles.itemName}>{updateText}</Text>
                 </TouchableOpacity>
             </View>
         }
