@@ -15,8 +15,14 @@ import { useNavigation } from '@react-navigation/native'
 export default function NoteUpdate(props) {
 
   const [ updateText, setUpdateText ] = useState({content: '', book: '', chapter: null, verse: null})
+  const [ formState, setFormState ] = useState('')
+
+  useEffect(() => {
+    setFormState(props.item)
+  }, [props.item])
 
   const handleSubmit = () => {
+    props.setEditFormVisible(!props.editFormVisible)
     // CREATE UPDATE FUNCTION IN TABONESCREEN AND PASS HERE AS PROPS
   }
 
@@ -28,7 +34,7 @@ export default function NoteUpdate(props) {
             borderWidth: 1,
             backgroundColor: '#fff'
           }}
-          placeholder='Add Note'
+        //   placeholder='Add Note'
           onChangeText={text => 
             setUpdateText({
               content: text,
@@ -37,7 +43,7 @@ export default function NoteUpdate(props) {
               verse: props.currentPassage.verse  
             })
           }
-          defaultValue={props.noteText}
+          value={props.item.content}
           keyboardAppearance='dark'
           multiline={true}
           // onSubmitEditing={}

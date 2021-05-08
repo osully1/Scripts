@@ -27,6 +27,7 @@ export default function NoteListItem(props) {
         {
             editFormVisible ?
             <NoteUpdate 
+                item={props.item}
                 noteText={props.noteText}
                 setNoteText={props.setNoteText}
                 noteState={props.noteState}
@@ -34,6 +35,8 @@ export default function NoteListItem(props) {
                 addNoteToList={props.addNoteToList}
                 currentPassage={props.currentPassage}
                 setCurrentPassage={props.setCurrentPassage}
+                editFormVisible={editFormVisible}
+                setEditFormVisible={setEditFormVisible}
             />
             :
             <View key={props.index} style={styles.itemContainer}>
