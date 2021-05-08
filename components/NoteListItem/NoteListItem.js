@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {
+  Text,
+  View,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -8,54 +10,60 @@ import {
   TextInput
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { Text, View } from '../components/Themed';
 import { useNavigation } from '@react-navigation/native'
-import NoteInput from '../components/NoteInput/NoteInput'
-import NoteUpdate from '../components/NoteInput/NoteUpdate'
-import NoteListItem from '../components/NoteListItem/NoteListItem'
+import NoteUpdate from '../NoteInput/NoteUpdate'
 
-export default function AddNoteScreen(props) {
+export default function NoteListItem(props) {
 
-    const [ noteText, setNoteText ] = useState('')
+  const [ updateText, setUpdateText ] = useState({content: '', book: '', chapter: null, verse: null})
+  const [editFormVisible, setEditFormVisible] = useState(false)
 
-    const currentBook = props.currentPassage.book
-    const currentChapter = props.currentPassage.chapter
-    const currentVerse = props.currentPassage.verse
+  const toggleForm = () => {
+      setEditFormVisible(!editFormVisible);
+  }
 
-    const separator = () => {
-        return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
-    }
-
-    const renderItem = ({item, index}) => {
-        return (
-            <NoteListItem 
-                noteText={noteText}
-                setNoteText={setNoteText}
+  return(
+    <View key={props.index} style={styles.itemContainer}>
+        {
+            editFormVisible ?
+            <NoteUpdate 
+                noteText={props.noteText}
+                setNoteText={props.setNoteText}
                 noteState={props.noteState}
                 setNoteState={props.setNoteState}
                 addNoteToList={props.addNoteToList}
                 currentPassage={props.currentPassage}
                 setCurrentPassage={props.setCurrentPassage}
-                item={item}
-                index={index}
             />
-        )
-      }
-
-    return (
-        <View>
-            <Text style={styles.chapterHeader}>{currentBook} {currentChapter}:{currentVerse}</Text>
-            <FlatList
-                data={props.noteState}
-                keyExtractor={(e, i) => i.toString()}
-                renderItem={renderItem}
-                ItemSeparatorComponent={separator}
-            />
-        </View>
-    )
+            :
+            <View key={props.index} style={styles.itemContainer}>
+                <TouchableOpacity 
+                    style={styles.itemButton}
+                    onPress={() =>  {toggleForm()}}
+                >
+                    <Text style={styles.itemName}>{props.item.content}</Text>
+                </TouchableOpacity>
+            </View>
+        }
+    </View>
+  )
 }
 
+
 const styles = StyleSheet.create({
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: '#EBEBEB',
+      backgroundColor: '#fff',
+      width: '37%',
+      height: 50,
+    },
+    buttonText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
     container: {
       flex: 1,
       alignItems: 'center',
@@ -87,8 +95,8 @@ const styles = StyleSheet.create({
       color: '#fff'
     },
     itemContainer: {
-      flexDirection: 'row',
-      paddingVertical: 15
+    //   flexDirection: 'row',
+      paddingVertical: 10,
     },
     itemButton: {
       flex: 1,
@@ -105,12 +113,5 @@ const styles = StyleSheet.create({
     },
     itemName: {
       fontSize: 16
-    },
-    chapterHeader: {
-        alignSelf: 'center',
-        fontSize: 18,
-        fontWeight: '600',
-        marginTop: 9,
-        marginBottom: 20
     }
   });

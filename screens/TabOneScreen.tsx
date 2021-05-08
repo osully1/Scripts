@@ -14,7 +14,7 @@ export default function TabOneScreen() {
 
   const AddBibleStack = createStackNavigator<BibleParamList>()
 
-  const [ noteState, setNoteState ] = useState({})
+  const [ noteState, setNoteState ] = useState([])
   const [ currentPassage, setCurrentPassage ] = useState({book: '', chapter: null, verse: null})
 
 
@@ -22,7 +22,7 @@ export default function TabOneScreen() {
   useEffect(() => {
     const acquireNotes = async () => {
       console.log('fetching data')
-      const notes = await fetch('http://30a0010044eb.ngrok.io/notes')
+      const notes = await fetch('http://71f7a676f97b.ngrok.io/notes')
         .then(res => res.json())
       console.log(notes)
       setNoteState(notes)
@@ -32,7 +32,7 @@ export default function TabOneScreen() {
 
   const addNoteToList = async (noteObject) => {
     try {
-      const note = await fetch('http://30a0010044eb.ngrok.io/notes', {
+      const note = await fetch('http://71f7a676f97b.ngrok.io/notes', {
         body: JSON.stringify(noteObject),
         method: 'POST',
         headers: {
