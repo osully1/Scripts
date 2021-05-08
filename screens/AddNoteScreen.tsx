@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  Image,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -9,9 +10,7 @@ import {
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import { Text, View } from '../components/Themed';
-import { useNavigation } from '@react-navigation/native'
 import NoteInput from '../components/NoteInput/NoteInput'
-import NoteUpdate from '../components/NoteInput/NoteUpdate'
 import NoteListItem from '../components/NoteListItem/NoteListItem'
 
 export default function AddNoteScreen(props) {
@@ -20,24 +19,36 @@ export default function AddNoteScreen(props) {
     const currentChapter = props.currentPassage.chapter
     const currentVerse = props.currentPassage.verse
 
+    const [ toggleAdd, setToggleAdd ] = useState(false)
+
+    const toggleAddForm = () => {
+        setToggleAdd(!toggleAdd)
+    }
+
     const separator = () => {
         return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
     }
 
     const renderItem = ({item, index}) => {
-        return (
-            <NoteListItem 
-                item={item}
-                index={index}
-                noteState={props.noteState}
-                setNoteState={props.setNoteState}
-                addNoteToList={props.addNoteToList}
-                handleUpdate={props.handleUpdate}
-                currentPassage={props.currentPassage}
-                setCurrentPassage={props.setCurrentPassage}
-            />
-        )
-      }
+        if (
+            item.book === props.currentPassage.book
+            && item.chapter === props.currentPassage.chapter
+            && item.verse === props.currentPassage.verse
+        ) {
+            return (
+                <NoteListItem 
+                    item={item}
+                    index={index}
+                    noteState={props.noteState}
+                    setNoteState={props.setNoteState}
+                    addNoteToList={props.addNoteToList}
+                    handleUpdate={props.handleUpdate}
+                    currentPassage={props.currentPassage}
+                    setCurrentPassage={props.setCurrentPassage}
+                />
+            )
+        }
+    }
 
     return (
         <View>
@@ -48,6 +59,30 @@ export default function AddNoteScreen(props) {
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
+            {
+                toggleAdd ?
+                <View style={styles.addField}>
+                    <NoteInput
+                        toggleAdd={toggleAdd}
+                        setToggleAdd={setToggleAdd}
+                        noteState={props.noteState}
+                        setNoteState={props.setNoteState}
+                        addNoteToList={props.addNoteToList}
+                        currentPassage={props.currentPassage}
+                        setCurrentPassage={props.setCurrentPassage}
+                    />
+                </View>
+                :
+                <TouchableOpacity
+                    style={styles.addButton}
+                    onPress={() => {toggleAddForm()}}
+                >
+                    <Image
+                        style={styles.addButtonIcon}
+                        source={require('../assets/images/addnoteicon.png')}
+                    />
+                </TouchableOpacity>
+            }
         </View>
     )
 }
@@ -109,5 +144,22 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         marginTop: 9,
         marginBottom: 20
+    },
+    addButton: {
+        height: 40,
+        width: 40,
+        alignSelf: 'flex-end',
+        position: 'absolute',
+        bottom: 0
+    },
+    addButtonIcon: {
+        height: 40,
+        width: 40
+    },
+    addField: {
+        position: 'absolute',
+        bottom: 0,
+        width: '80%',
+        height: 60
     }
   });

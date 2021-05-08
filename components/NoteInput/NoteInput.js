@@ -17,6 +17,7 @@ export default function NoteInput(props) {
   const [ noteText, setNoteText ] = useState({content: '', book: '', chapter: null, verse: null})
 
   const handleSubmit = () => {
+    props.setToggleAdd(!props.toggleAdd)
     props.addNoteToList(noteText)
   }
 

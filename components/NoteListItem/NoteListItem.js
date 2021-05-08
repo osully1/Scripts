@@ -2,12 +2,9 @@ import * as React from 'react';
 import {
   Text,
   View,
+  Image,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
-  TextInput
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
@@ -43,12 +40,18 @@ export default function NoteListItem(props) {
             />
             :
             <View key={props.index} style={styles.itemContainer}>
-                <TouchableOpacity 
-                    style={styles.itemButton}
-                    onPress={() =>  {toggleForm()}}
-                >
+                <View style={styles.itemButton}>
+                    <TouchableOpacity
+                        style={styles.updateButton}
+                        onPress={() =>  {toggleForm()}}
+                    >
+                        <Image 
+                            style={styles.updateImage}
+                            source={require('../../assets/images/editicon.png')} 
+                        />
+                    </TouchableOpacity>
                     <Text style={styles.itemName}>{updateText}</Text>
-                </TouchableOpacity>
+                </View>
             </View>
         }
     </View>
@@ -119,5 +122,16 @@ const styles = StyleSheet.create({
     },
     itemName: {
       fontSize: 16
+    },
+    updateButton: {
+      height: 35,
+      width: 35,
+      marginTop: -25,
+      marginBottom: 15,
+      alignSelf: 'flex-end'
+    },
+    updateImage: {
+        height: 35,
+        width: 35
     }
   });
