@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '37%',
     height: 50,
+    marginTop: -20
   },
   buttonText: {
     fontSize: 20,

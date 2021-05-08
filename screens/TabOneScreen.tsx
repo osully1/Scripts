@@ -6,7 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BookScreen from '../screens/BookScreen'
 import ChapterScreen from '../screens/ChapterScreen';
 import PassageScreen from '../screens/PassageScreen';
-import AddNoteScreen from '../screens/AddNoteScreen';
+import NoteScreen from '../screens/NoteScreen';
+import AddNoteScreen from './AddNoteScreen';
 import { BibleParamList } from '../types';
 import { useEffect, useState } from 'react';
 
@@ -40,9 +41,6 @@ export default function TabOneScreen() {
           'Content-Type': 'application/json'
         }
       }).then(res => res.json());
-      setNoteState(prevState => ({
-        notes: [note, ...prevState.notes]
-      }));
     } catch (error) {
       console.log(error)
     }
@@ -64,7 +62,6 @@ export default function TabOneScreen() {
     const updatedNoteArray = noteState
     updatedNoteArray.splice(noteIdx, 1, formInputs)
     setNoteState(updatedNoteArray)
-    console.log(updatedNoteArray)
   }
 
   return (
@@ -87,12 +84,21 @@ export default function TabOneScreen() {
           setCurrentPassage={setCurrentPassage}
         />}
       </AddBibleStack.Screen>
-      <AddBibleStack.Screen name="AddNote">
-        {(props) => <AddNoteScreen {...props} 
+      <AddBibleStack.Screen name="Notes">
+        {(props) => <NoteScreen {...props} 
           noteState={noteState}
           setNoteState={setNoteState}
           addNoteToList={addNoteToList}
           handleUpdate={handleUpdate}
+          currentPassage={currentPassage}
+          setCurrentPassage={setCurrentPassage}
+        />}
+      </AddBibleStack.Screen>
+      <AddBibleStack.Screen name="Add Note">
+        {(props) => <AddNoteScreen {...props} 
+          noteState={noteState}
+          setNoteState={setNoteState}
+          addNoteToList={addNoteToList}
           currentPassage={currentPassage}
           setCurrentPassage={setCurrentPassage}
         />}

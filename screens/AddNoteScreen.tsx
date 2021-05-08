@@ -1,165 +1,77 @@
 import * as React from 'react';
 import {
-  Image,
+  Text,
+  View,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
   TextInput
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { Text, View } from '../components/Themed';
-import NoteInput from '../components/NoteInput/NoteInput'
-import NoteListItem from '../components/NoteListItem/NoteListItem'
+import { useNavigation } from '@react-navigation/native'
 
 export default function AddNoteScreen(props) {
 
-    const currentBook = props.currentPassage.book
-    const currentChapter = props.currentPassage.chapter
-    const currentVerse = props.currentPassage.verse
+  const navigation = useNavigation()
 
-    const [ toggleAdd, setToggleAdd ] = useState(false)
+  const [ noteText, setNoteText ] = useState({content: '', book: '', chapter: null, verse: null})
 
-    const toggleAddForm = () => {
-        setToggleAdd(!toggleAdd)
-    }
+  const handleSubmit = () => {
+    props.addNoteToList(noteText)
+    const newNoteArray = props.noteState
+    newNoteArray.push(noteText)
+    props.setNoteState(newNoteArray)
+    console.log(newNoteArray)
+  }
 
-    const separator = () => {
-        return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
-    }
-
-    const renderItem = ({item, index}) => {
-        if (
-            item.book === props.currentPassage.book
-            && item.chapter === props.currentPassage.chapter
-            && item.verse === props.currentPassage.verse
-        ) {
-            return (
-                <NoteListItem 
-                    item={item}
-                    index={index}
-                    noteState={props.noteState}
-                    setNoteState={props.setNoteState}
-                    addNoteToList={props.addNoteToList}
-                    handleUpdate={props.handleUpdate}
-                    currentPassage={props.currentPassage}
-                    setCurrentPassage={props.setCurrentPassage}
-                />
-            )
-        }
-    }
-
-    return (
-        <View>
-            <Text style={styles.chapterHeader}>{currentBook} {currentChapter}:{currentVerse}</Text>
-            <FlatList
-                data={props.noteState}
-                keyExtractor={(e, i) => i.toString()}
-                renderItem={renderItem}
-                ItemSeparatorComponent={separator}
-            />
-            {
-                toggleAdd ?
-                <View style={styles.addField}>
-                    <NoteInput
-                        toggleAdd={toggleAdd}
-                        setToggleAdd={setToggleAdd}
-                        noteState={props.noteState}
-                        setNoteState={props.setNoteState}
-                        addNoteToList={props.addNoteToList}
-                        currentPassage={props.currentPassage}
-                        setCurrentPassage={props.setCurrentPassage}
-                    />
-                </View>
-                :
-                <TouchableOpacity
-                    style={styles.addButton}
-                    onPress={() => {toggleAddForm()}}
-                >
-                    <Image
-                        style={styles.addButtonIcon}
-                        source={require('../assets/images/addnoteicon.png')}
-                    />
-                </TouchableOpacity>
-            }
-        </View>
-    )
+  return(
+    <View>
+      <TextInput
+          style={{
+            height: 120,
+            borderWidth: 1,
+            backgroundColor: '#fff'
+          }}
+          placeholder='Add Note'
+          onChangeText={text => 
+            setNoteText({
+              content: text,
+              book: props.currentPassage.book,
+              chapter: props.currentPassage.chapter,
+              verse: props.currentPassage.verse  
+            })
+          }
+          defaultValue={props.noteText}
+          keyboardAppearance='dark'
+          multiline={true}
+          // onSubmitEditing={}
+      />
+      <Text style={{padding: 10, fontSize: 42}} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+            handleSubmit()
+            navigation.goBack()
+        }}
+      >
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    tabContainer: {
-      flex: 1,
-      paddingHorizontal: 10,
-      justifyContent: 'center'
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    separator: {
-      marginVertical: 30,
-      height: 1,
-      width: '80%',
-    },
-    listTab: {
-      flexDirection: 'row',
-      alignSelf: 'center',
-      marginBottom: 20,
-    },
-    textTab: {
-      fontSize: 16
-    },
-    textTabActive: {
-      color: '#fff'
-    },
-    itemContainer: {
-      flexDirection: 'row',
-      paddingVertical: 15
-    },
-    itemButton: {
-      flex: 1,
-      paddingHorizontal: 2,
-      paddingVertical: 12,
-      justifyContent: 'center'
-    },
-    itemButtonActive: {
-      flex: 1,
-      paddingHorizontal: 2,
-      paddingVertical: 12,
-      justifyContent: 'center',
-      backgroundColor: '#B2081C'
-    },
-    itemName: {
-      fontSize: 16
-    },
-    chapterHeader: {
-        alignSelf: 'center',
-        fontSize: 18,
-        fontWeight: '600',
-        marginTop: 9,
-        marginBottom: 20
-    },
-    addButton: {
-        height: 40,
-        width: 40,
-        alignSelf: 'flex-end',
-        position: 'absolute',
-        bottom: 0
-    },
-    addButtonIcon: {
-        height: 40,
-        width: 40
-    },
-    addField: {
-        position: 'absolute',
-        bottom: 0,
-        width: '80%',
-        height: 60
-    }
-  });
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#EBEBEB',
+    backgroundColor: '#fff',
+    width: '37%',
+    height: 50,
+    marginTop: -20
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});

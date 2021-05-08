@@ -42,7 +42,7 @@ export default function ChapterScreen(props) {
               style={styles.itemButton}
               onPress={() =>  {
                 props.setCurrentPassage({book: currentBook, chapter: currentChapter, verse: index + 1})
-                navigation.navigate('AddNote', {
+                navigation.navigate('Notes', {
                   paramKey: [currentBook, currentChapter, index + 1]
                 })}}
             >

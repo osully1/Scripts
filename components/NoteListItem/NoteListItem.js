@@ -41,16 +41,24 @@ export default function NoteListItem(props) {
             :
             <View key={props.index} style={styles.itemContainer}>
                 <View style={styles.itemButton}>
-                    <TouchableOpacity
-                        style={styles.updateButton}
-                        onPress={() =>  {toggleForm()}}
-                    >
-                        <Image 
-                            style={styles.updateImage}
-                            source={require('../../assets/images/editicon.png')} 
-                        />
-                    </TouchableOpacity>
                     <Text style={styles.itemName}>{updateText}</Text>
+                    <View style={styles.buttonView}>
+                        <TouchableOpacity
+                            style={styles.updateButton}
+                            onPress={() =>  {toggleForm()}}
+                        >
+                            <Image 
+                                style={styles.updateImage}
+                                source={require('../../assets/images/editicon.png')} 
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image 
+                                style={styles.deleteImage}
+                                source={require('../../assets/images/erasericon.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         }
@@ -109,9 +117,10 @@ const styles = StyleSheet.create({
     },
     itemButton: {
       flex: 1,
+      flexDirection: 'row',
       paddingHorizontal: 2,
       paddingVertical: 12,
-      justifyContent: 'center'
+      justifyContent: 'space-between'
     },
     itemButtonActive: {
       flex: 1,
@@ -121,17 +130,28 @@ const styles = StyleSheet.create({
       backgroundColor: '#B2081C'
     },
     itemName: {
-      fontSize: 16
+      fontSize: 16,
+      width: '85%'
     },
     updateButton: {
       height: 35,
       width: 35,
       marginTop: -25,
       marginBottom: 15,
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
+      right: 5
     },
     updateImage: {
         height: 35,
         width: 35
+    },
+    deleteImage: {
+        height: 40,
+        width: 40,
+        marginBottom: -30
+    },
+    buttonView: {
+        justifyContent: 'space-around',
+        right: 5
     }
   });

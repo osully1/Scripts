@@ -14,7 +14,7 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function NoteUpdate(props) {
 
-  const [ updateText, setUpdateText ] = useState({content: '', book: '', chapter: null, verse: null})
+  const [ defaultText, setDefaultText ] = useState('')
   const [ formState, setFormState ] = useState({
       id: null,
       content: '',
