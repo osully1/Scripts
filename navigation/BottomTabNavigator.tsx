@@ -57,7 +57,11 @@ const TabOneStack = createStackNavigator<TabOneParamList>();
 
 function TabOneNavigator() {
   return (
-    <TabOneStack.Navigator>
+    <TabOneStack.Navigator
+      screenOptions={{
+        cardStyle: { backgroundColor: 'rgba(255,255,255,0.0)' }
+      }}
+    >
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}

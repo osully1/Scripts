@@ -37,7 +37,6 @@ export default function NoteUpdate(props) {
   const handleSubmit = () => {
     props.setEditFormVisible(!props.editFormVisible)
     props.setUpdateText(formState.content)
-    console.log(formState)
     props.handleUpdate(formState)
   }
 
@@ -70,7 +69,7 @@ export default function NoteUpdate(props) {
                 <Text style={styles.buttonText}>Edit</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.cancelButton}
+                style={styles.editButton}
                 onPress={() => props.setEditFormVisible(!props.editFormVisible)}
             >
                 <Text style={styles.buttonText}>Cancel</Text>
@@ -87,15 +86,6 @@ const styles = StyleSheet.create({
     marginTop: -22,
   },
   editButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#EBEBEB',
-    backgroundColor: '#fff',
-    width: '37%',
-    height: 50,
-  },
-  cancelButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,

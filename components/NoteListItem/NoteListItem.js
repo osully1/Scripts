@@ -13,15 +13,24 @@ import NoteUpdate from '../NoteInput/NoteUpdate'
 export default function NoteListItem(props) {
 
   const [editFormVisible, setEditFormVisible] = useState(false)
+  const [ deleteFormVisible, setDeleteFormVisible ] = useState(false)
   const [ updateText, setUpdateText ] = useState('')
 
   const toggleForm = () => {
-      setEditFormVisible(!editFormVisible);
+      setEditFormVisible(!editFormVisible)
+  }
+  const toggleDeleteForm = () => {
+      setDeleteFormVisible(!deleteFormVisible)
   }
 
   useEffect(() => {
     setUpdateText(props.item.content)
   }, [])
+
+  const handleDeleteSubmit = (id) => {
+      props.handleDelete(id)
+      setDeleteFormVisible(!deleteFormVisible)
+  }
 
   return(
     <View key={props.index} style={styles.itemContainer}>
@@ -31,13 +40,29 @@ export default function NoteListItem(props) {
                 item={props.item}
                 noteState={props.noteState}
                 setNoteState={props.setNoteState}
-                handleUpdate={props.handleUpdate}
                 currentPassage={props.currentPassage}
                 setCurrentPassage={props.setCurrentPassage}
                 editFormVisible={editFormVisible}
                 setEditFormVisible={setEditFormVisible}
                 setUpdateText={setUpdateText}
             />
+            :
+            deleteFormVisible ?
+            <View>
+                <Text>Do you want to delete this note?</Text>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {handleDeleteSubmit(props.item.id)}}
+                >
+                    <Text style={styles.buttonText}>Delete</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {setDeleteFormVisible(!deleteFormVisible)}}
+                >
+                    <Text>Cancel</Text>
+                </TouchableOpacity>
+            </View>
             :
             <View key={props.index} style={styles.itemContainer}>
                 <View style={styles.itemButton}>
@@ -52,7 +77,9 @@ export default function NoteListItem(props) {
                                 source={require('../../assets/images/editicon.png')} 
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {toggleDeleteForm()}}
+                        >
                             <Image 
                                 style={styles.deleteImage}
                                 source={require('../../assets/images/erasericon.png')}

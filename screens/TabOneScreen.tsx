@@ -64,8 +64,30 @@ export default function TabOneScreen() {
     setNoteState(updatedNoteArray)
   }
 
+  const handleDelete = async (noteId) => {
+    try {
+      await fetch(`http://7d1e574688d5.ngrok.io/notes/${noteId}`, {
+        method: 'DELETE'
+      })
+      const updatedNotes = noteState.filter(note => note.id !== noteId);
+      setNoteState({
+        updatedNotes
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    const noteIdx = noteState.findIndex(note => note.id === noteId)
+    const updatedNoteArray = noteState
+    updatedNoteArray.splice(noteIdx, 1)
+    setNoteState(updatedNoteArray)
+  }
+
   return (
-    <AddBibleStack.Navigator>
+    <AddBibleStack.Navigator
+      // screenOptions={{
+      //   cardStyle: { backgroundColor: 'rgba(255,255,255,0.0)' }
+      // }}
+    >
       <AddBibleStack.Screen name="Books">
         {(props) => <BookScreen {...props}
           currentPassage={currentPassage}
@@ -90,6 +112,7 @@ export default function TabOneScreen() {
           setNoteState={setNoteState}
           addNoteToList={addNoteToList}
           handleUpdate={handleUpdate}
+          handleDelete={handleDelete}
           currentPassage={currentPassage}
           setCurrentPassage={setCurrentPassage}
         />}

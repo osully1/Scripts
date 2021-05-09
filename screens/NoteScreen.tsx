@@ -40,6 +40,7 @@ export default function AddNoteScreen(props) {
                     setNoteState={props.setNoteState}
                     addNoteToList={props.addNoteToList}
                     handleUpdate={props.handleUpdate}
+                    handleDelete={props.handleDelete}
                     currentPassage={props.currentPassage}
                     setCurrentPassage={props.setCurrentPassage}
                 />

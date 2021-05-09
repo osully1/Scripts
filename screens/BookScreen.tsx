@@ -5,7 +5,7 @@ import {
   Dimensions,
   SafeAreaView,
   FlatList,
-  Image
+  ImageBackground
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import { Text, View } from '../components/Themed';
@@ -127,26 +127,28 @@ export default function BookScreen(props) {
   return (
     <>
       <SafeAreaView style={styles.tabContainer}>
-        <View style={styles.listTab}>
-          {
-            bookTabs.map((e, i) => (
-              <TouchableOpacity 
-                key={i}
-                style={[styles.btnTab, status === e.title && styles.btnTabActive]}
-                onPress={() => setStatusFilter(e.title)}
-              >
-                <Text style={[styles.textTab, status === e.title && styles.textTabActive]}>{e.title}</Text>
-              </TouchableOpacity>
-            ))
-          }
-        </View>
+        {/* <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}> */}
+            <View style={styles.listTab}>
+            {
+                bookTabs.map((e, i) => (
+                <TouchableOpacity 
+                    key={i}
+                    style={[styles.btnTab, status === e.title && styles.btnTabActive]}
+                    onPress={() => setStatusFilter(e.title)}
+                >
+                    <Text style={[styles.textTab, status === e.title && styles.textTabActive]}>{e.title}</Text>
+                </TouchableOpacity>
+                ))
+            }
+            </View>
 
-        <FlatList
-          data={dataList}
-          keyExtractor={(e, i) => i.toString()}
-          renderItem={renderItem}
-          ItemSeparatorComponent={separator}
-        />
+            <FlatList
+            data={dataList}
+            keyExtractor={(e, i) => i.toString()}
+            renderItem={renderItem}
+            ItemSeparatorComponent={separator}
+            />
+        {/* </ImageBackground> */}
       </SafeAreaView>
     </>
   );
@@ -183,7 +185,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#EBEBEB',
     padding: 14,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // marginTop: 80
   },
   btnTabActive: {
     backgroundColor: '#B2081C'
@@ -192,11 +195,12 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   textTabActive: {
-    color: '#fff'
+    color: '#fff',
   },
   itemContainer: {
     flexDirection: 'row',
-    paddingVertical: 15
+    paddingVertical: 15,
+    backgroundColor: 'rgba(255,255,255,0.0)'
   },
   itemButton: {
     flex: 1,
@@ -214,5 +218,8 @@ const styles = StyleSheet.create({
   itemName: {
     fontWeight: 'bold',
     fontSize: 20
+  },
+  backgroundImage: {
+
   }
 });
