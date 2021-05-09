@@ -4,13 +4,9 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
   TextInput
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
 
 export default function NoteUpdate(props) {
 
@@ -46,7 +42,11 @@ export default function NoteUpdate(props) {
             style={{
                 height: 120,
                 borderWidth: 1,
-                backgroundColor: '#fff'
+                backgroundColor: 'transparent',
+                borderWidth: 1.5,
+                padding: 10,
+                marginLeft: 5,
+                marginRight: 5
             }}
             //   placeholder='Add Note'
             onChangeText={text => 
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   editButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#EBEBEB',
-    backgroundColor: '#fff',
+    borderWidth: 1.5,
+    borderColor: '#000',
+    backgroundColor: 'transparent',
     width: '37%',
     height: 50,
   },

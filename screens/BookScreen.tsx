@@ -114,20 +114,23 @@ export default function BookScreen(props) {
             })
         }}
         >
-          <Text style={styles.itemName}>{item.name}</Text>
+          <View style={styles.itemView}>
+            <Text style={styles.itemName}>{item.name}</Text>
+            <Text style={styles.caret}> > </Text>
+          </View>
         </TouchableOpacity>
       </View>
     )
   }
   
   const separator = () => {
-    return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
+    return <View style={{height: 1.5, backgroundColor: 'rgb(50,50,50)'}} />
   }
 
   return (
     <>
       <SafeAreaView style={styles.tabContainer}>
-        {/* <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}> */}
+        <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}>
             <View style={styles.listTab}>
             {
                 bookTabs.map((e, i) => (
@@ -148,7 +151,7 @@ export default function BookScreen(props) {
             renderItem={renderItem}
             ItemSeparatorComponent={separator}
             />
-        {/* </ImageBackground> */}
+        </ImageBackground>
       </SafeAreaView>
     </>
   );
@@ -183,20 +186,22 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width / 2,
     flexDirection: 'row',
     borderWidth: 0.5,
-    borderColor: '#EBEBEB',
+    borderColor: 'rgb(50,50,50)',
     padding: 14,
     justifyContent: 'center',
-    // marginTop: 80
+    marginTop: 80,
+    backgroundColor: 'rgb(50,50,50)'
   },
   btnTabActive: {
     backgroundColor: '#B2081C'
   },
   textTab: {
-    fontSize: 16
+    fontSize: 16,
+    color: '#fff'
   },
-  textTabActive: {
-    color: '#fff',
-  },
+//   textTabActive: {
+//     color: '#fff',
+//   },
   itemContainer: {
     flexDirection: 'row',
     paddingVertical: 15,
@@ -217,9 +222,19 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 20,
+    marginLeft: 10
   },
   backgroundImage: {
 
+  },
+  itemView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(255,255,255,0.0)',
+  },
+  caret: {
+    fontSize: 23,
+    right: 10
   }
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -84,9 +84,9 @@ export default function TabOneScreen() {
 
   return (
     <AddBibleStack.Navigator
-      // screenOptions={{
-      //   cardStyle: { backgroundColor: 'rgba(255,255,255,0.0)' }
-      // }}
+      screenOptions={{
+        cardStyle: { backgroundColor: 'rgb(50,50,50)' }
+      }}
     >
       <AddBibleStack.Screen name="Books">
         {(props) => <BookScreen {...props}
@@ -145,4 +145,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  backgroundImage: {
+
+  }
 });

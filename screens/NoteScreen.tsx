@@ -1,12 +1,10 @@
 import * as React from 'react';
 import {
   Image,
+  ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
   FlatList,
-  TextInput
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { useEffect, useState } from 'react';
@@ -23,7 +21,7 @@ export default function AddNoteScreen(props) {
     const currentVerse = props.currentPassage.verse
 
     const separator = () => {
-        return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
+      return <View style={{height: 1, backgroundColor: 'rgb(50,50,50)'}} />
     }
 
     const renderItem = ({item, index}) => {
@@ -49,6 +47,7 @@ export default function AddNoteScreen(props) {
     }
 
     return (
+      <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}>
         <View style={styles.flatListView}>
             <Text style={styles.chapterHeader}>{currentBook} {currentChapter}:{currentVerse}</Text>
             <FlatList
@@ -70,6 +69,7 @@ export default function AddNoteScreen(props) {
                 />
             </TouchableOpacity>
         </View>
+      </ImageBackground>
     )
 }
 
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         width: 40,
         alignSelf: 'flex-start',
         position: 'absolute',
-        top: 8,
+        top: 1,
         left: 5
     },
     addButtonIcon: {
@@ -151,6 +151,19 @@ const styles = StyleSheet.create({
     },
     flatListView: {
       height: '100%',
-      top: 10
+      top: 10,
+      backgroundColor: 'rgba(255,255,255,0.0)',
+    },
+    backgroundImage: {
+
+    },
+    itemView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: 'rgba(255,255,255,0.0)',
+    },
+    caret: {
+      fontSize: 23,
+      right: 10
     }
   });

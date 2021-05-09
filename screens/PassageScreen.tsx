@@ -7,12 +7,11 @@ import {
     Dimensions,
     SafeAreaView,
     FlatList,
-    Image
+    ImageBackground
   } from 'react-native';
 import { useEffect, useState } from 'react';
 import { fetchMegaVerse } from '../assets/services/bible-api';
 import { useNavigation } from '@react-navigation/native'
-import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
 export default function ChapterScreen(props) {
 
@@ -53,18 +52,20 @@ export default function ChapterScreen(props) {
       }
 
     const separator = () => {
-        return <View style={{height: 2, backgroundColor: '#f1f1f1'}} />
-      }
+        return <View style={{height: 1.5, backgroundColor: 'rgb(50,50,50)'}} />
+    }
 
     return (
         <SafeAreaView style={styles.tabContainer}>
-            <Text style={styles.chapterHeader}>{currentBook} {currentChapter}</Text>
-            <FlatList
-                data={verseArray}
-                keyExtractor={(e, i) => i.toString()}
-                renderItem={renderItem}
-                ItemSeparatorComponent={separator}
-            />
+            <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}>
+                <Text style={styles.chapterHeader}>{currentBook} {currentChapter}</Text>
+                <FlatList
+                    data={verseArray}
+                    keyExtractor={(e, i) => i.toString()}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={separator}
+                />
+            </ImageBackground>
         </SafeAreaView>
     )
 }
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
       paddingVertical: 15,
-      backgroundColor: 'white'
+      backgroundColor: 'rgba(255,255,255,0.0)'
     },
     itemButton: {
       flex: 1,
@@ -127,10 +128,22 @@ const styles = StyleSheet.create({
       fontSize: 20
     },
     chapterHeader: {
-        alignSelf: 'center',
-        fontSize: 18,
-        fontWeight: '600',
-        marginTop: 9,
-        marginBottom: 20
+      alignSelf: 'center',
+      fontSize: 20,
+      fontWeight: '600',
+      marginTop: 80,
+      marginBottom: 20
+    },
+    backgroundImage: {
+
+    },
+    itemView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: 'rgba(255,255,255,0.0)',
+    },
+    caret: {
+      fontSize: 23,
+      right: 10
     }
   })

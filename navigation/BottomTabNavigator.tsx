@@ -59,7 +59,8 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator
       screenOptions={{
-        cardStyle: { backgroundColor: 'rgba(255,255,255,0.0)' }
+        headerShown: false,
+        cardStyle: { backgroundColor: 'rgb(50,50,50)' }
       }}
     >
       <TabOneStack.Screen
