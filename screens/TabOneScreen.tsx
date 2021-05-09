@@ -23,7 +23,7 @@ export default function TabOneScreen() {
   useEffect(() => {
     const acquireNotes = async () => {
       console.log('fetching data')
-      const notes = await fetch('http://92549b72a175.ngrok.io/notes')
+      const notes = await fetch('http://7d1e574688d5.ngrok.io/notes')
         .then(res => res.json())
       console.log(notes)
       setNoteState(notes)
@@ -33,7 +33,7 @@ export default function TabOneScreen() {
 
   const addNoteToList = async (noteObject) => {
     try {
-      const note = await fetch('http://92549b72a175.ngrok.io/notes', {
+      const note = await fetch('http://7d1e574688d5.ngrok.io/notes', {
         body: JSON.stringify(noteObject),
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ export default function TabOneScreen() {
 
   const handleUpdate = async (formInputs) => {
     try {
-      await fetch(`http://92549b72a175.ngrok.io/notes/${formInputs.id}`, {
+      await fetch(`http://7d1e574688d5.ngrok.io/notes/${formInputs.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'Application/json'

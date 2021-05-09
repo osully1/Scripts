@@ -43,38 +43,59 @@ export default function NoteUpdate(props) {
 
   return(
     <View>
-      <TextInput
-          style={{
-            height: 120,
-            borderWidth: 1,
-            backgroundColor: '#fff'
-          }}
-        //   placeholder='Add Note'
-          onChangeText={text => 
-            setFormState(prevState => ({
-                ...prevState,
-              content: text,  
-            }))
-          }
-          defaultValue={props.item.content}
-          editable={true}
-          keyboardAppearance='dark'
-          multiline={true}
-          // onSubmitEditing={}
-      />
-      <Text style={{padding: 10, fontSize: 42}} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleSubmit()}
-      >
-        <Text style={styles.buttonText}>Submit</Text>
-      </TouchableOpacity>
+        <TextInput
+            style={{
+                height: 120,
+                borderWidth: 1,
+                backgroundColor: '#fff'
+            }}
+            //   placeholder='Add Note'
+            onChangeText={text => 
+                setFormState(prevState => ({
+                    ...prevState,
+                content: text,  
+                }))
+            }
+            defaultValue={props.item.content}
+            editable={true}
+            keyboardAppearance='dark'
+            multiline={true}
+        />
+        <Text style={{padding: 10, fontSize: 42}} />
+        <View style={styles.buttonRow}>
+            <TouchableOpacity
+                style={styles.editButton}
+                onPress={() => handleSubmit()}
+            >
+                <Text style={styles.buttonText}>Edit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => props.setEditFormVisible(!props.editFormVisible)}
+            >
+                <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  button: {
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: -22,
+  },
+  editButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#EBEBEB',
+    backgroundColor: '#fff',
+    width: '37%',
+    height: 50,
+  },
+  cancelButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
