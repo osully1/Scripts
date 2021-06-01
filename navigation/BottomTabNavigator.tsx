@@ -6,7 +6,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
@@ -14,8 +13,6 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, BibleParamList } from '../types';
-import ChapterScreen from '../screens/ChapterScreen';
-import PassageScreen from '../screens/PassageScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const AddBibleStack = createStackNavigator<BibleParamList>()
@@ -26,19 +23,25 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ 
+        activeTintColor: 'white',
+        inactiveTintColor: 'rgb(200,200,200)',
+        activeBackgroundColor: '#B2081C',
+        inactiveBackgroundColor: 'rgb(50,50,50)',
+      }}
+    >
       <BottomTab.Screen
         name="Passages"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="library" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Notes"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="document-text" color={color} />,
         }}
       />
     </BottomTab.Navigator>

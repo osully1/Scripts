@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
       paddingVertical: 15,
-      backgroundColor: 'rgba(255,255,255,0.0)'
+      backgroundColor: 'transparent'
     },
     itemButton: {
       flex: 1,
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     itemView: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      backgroundColor: 'rgba(255,255,255,0.0)',
+      backgroundColor: 'transparent',
     },
     caret: {
       fontSize: 23,

@@ -197,15 +197,15 @@ const styles = StyleSheet.create({
   },
   textTab: {
     fontSize: 16,
-    color: '#fff'
+    color: 'rgb(200,200,200)'
   },
-//   textTabActive: {
-//     color: '#fff',
-//   },
+  textTabActive: {
+    color: '#fff',
+  },
   itemContainer: {
     flexDirection: 'row',
     paddingVertical: 15,
-    backgroundColor: 'rgba(255,255,255,0.0)'
+    backgroundColor: 'transparent'
   },
   itemButton: {
     flex: 1,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   itemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(255,255,255,0.0)',
+    backgroundColor: 'transparent'
   },
   caret: {
     fontSize: 23,

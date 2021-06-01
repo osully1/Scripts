@@ -35,11 +35,10 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}>
+      screenOptions={{headerShown: false}}
+    >
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      {/* <Stack.Screen name="Chapters" component={ChapterScreen} />
-      <Stack.Screen name="Passages" component={PassageScreen} /> */}
     </Stack.Navigator>
   );
 }

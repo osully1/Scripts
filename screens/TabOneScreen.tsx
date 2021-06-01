@@ -23,7 +23,7 @@ export default function TabOneScreen() {
   useEffect(() => {
     const acquireNotes = async () => {
       console.log('fetching data')
-      const notes = await fetch('http://2e5792abf13e.ngrok.io/notes')
+      const notes = await fetch('http://ca7192ff5731.ngrok.io/notes')
         .then(res => res.json())
       console.log(notes)
       setNoteState(notes)
@@ -33,7 +33,7 @@ export default function TabOneScreen() {
 
   const addNoteToList = async (noteObject) => {
     try {
-      const note = await fetch('http://2e5792abf13e.ngrok.io/notes', {
+      const note = await fetch('http://ca7192ff5731.ngrok.io/notes', {
         body: JSON.stringify(noteObject),
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ export default function TabOneScreen() {
 
   const handleUpdate = async (formInputs) => {
     try {
-      await fetch(`http://2e5792abf13e.ngrok.io/notes/${formInputs.id}`, {
+      await fetch(`http://ca7192ff5731.ngrok.io/notes/${formInputs.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'Application/json'
@@ -66,7 +66,7 @@ export default function TabOneScreen() {
 
   const handleDelete = async (noteId) => {
     try {
-      await fetch(`http://2e5792abf13e.ngrok.io/notes/${noteId}`, {
+      await fetch(`http://ca7192ff5731.ngrok.io/notes/${noteId}`, {
         method: 'DELETE'
       })
       const updatedNotes = noteState.filter(note => note.id !== noteId);
@@ -88,7 +88,12 @@ export default function TabOneScreen() {
         cardStyle: { backgroundColor: 'rgb(50,50,50)' }
       }}
     >
-      <AddBibleStack.Screen name="Books">
+      <AddBibleStack.Screen 
+        name="Books"
+        options={{
+          backgroundColor: 'blue'
+        }}
+      >
         {(props) => <BookScreen {...props}
           currentPassage={currentPassage}
           setCurrentPassage={setCurrentPassage} 
@@ -117,7 +122,14 @@ export default function TabOneScreen() {
           setCurrentPassage={setCurrentPassage}
         />}
       </AddBibleStack.Screen>
-      <AddBibleStack.Screen name="Add Note">
+      <AddBibleStack.Screen 
+        name="Add Note"
+        options={{
+          headerStyle: {
+            backgroundColor: 'transparent'
+          }
+        }}
+      >
         {(props) => <AddNoteScreen {...props} 
           noteState={noteState}
           setNoteState={setNoteState}

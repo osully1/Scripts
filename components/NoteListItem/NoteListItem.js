@@ -41,7 +41,6 @@ export default function NoteListItem(props) {
                 noteState={props.noteState}
                 setNoteState={props.setNoteState}
                 currentPassage={props.currentPassage}
-                setCurrentPassage={props.setCurrentPassage}
                 editFormVisible={editFormVisible}
                 setEditFormVisible={setEditFormVisible}
                 setUpdateText={setUpdateText}
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       borderWidth: 1,
       borderColor: '#000',
-      backgroundColor: 'rgba(255,255,255,0.0)',
+      backgroundColor: 'transparent',
       width: '37%',
       height: 50,
     },
@@ -144,7 +143,7 @@ const styles = StyleSheet.create({
     itemContainer: {
     //   flexDirection: 'row',
       paddingVertical: 10,
-      backgroundColor: 'rgba(255,255,255,0.0)'
+      backgroundColor: 'transparent'
     },
     itemButton: {
       flex: 1,
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 2,
       paddingVertical: 12,
       justifyContent: 'space-between',
-      backgroundColor: 'rgba(255,255,255,0.0)'
+      backgroundColor: 'transparent'
     },
     itemButtonActive: {
       flex: 1,

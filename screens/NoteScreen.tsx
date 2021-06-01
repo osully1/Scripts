@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     flatListView: {
       height: '100%',
       top: 10,
-      backgroundColor: 'rgba(255,255,255,0.0)',
+      backgroundColor: 'transparent',
     },
     backgroundImage: {
 
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     itemView: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      backgroundColor: 'rgba(255,255,255,0.0)',
+      backgroundColor: 'transparent',
     },
     caret: {
       fontSize: 23,
