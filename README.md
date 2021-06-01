@@ -1,7 +1,7 @@
 # Scriptur
 
 <div align='center'>
-  <img src='https://i.imgur.com/YMckzIU.png?1' />
+  <img src='./assets/images/screenshot1.PNG' />
 </div>
 
 ## Discription:
