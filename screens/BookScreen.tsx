@@ -88,8 +88,6 @@ export default function BookScreen(props) {
   const navigation = useNavigation()
   const [ dataList, setDataList ] = useState(data)
   const [ status, setStatus ] = useState('Old Testament')
-  // May use below state array to set active button styles
-  // const [ isPressed, setIsPressed ] = useState([false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false])
 
   const setStatusFilter = status => {
     setStatus(status)
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   tabContainer: {
     flex: 1,
@@ -170,12 +168,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: '80%'
   },
   listTab: {
     flexDirection: 'row',

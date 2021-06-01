@@ -28,6 +28,7 @@ export default function BottomTabNavigator() {
         inactiveTintColor: 'rgb(200,200,200)',
         activeBackgroundColor: '#B2081C',
         inactiveBackgroundColor: 'rgb(50,50,50)',
+        labelStyle: {marginBottom: 3}
       }}
     >
       <BottomTab.Screen
