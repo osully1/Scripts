@@ -1,7 +1,7 @@
 # Scriptur
 
 <div align='center'>
-  <img src='./assets/images/screenshot1.PNG' />
+  <img src='https://i.imgur.com/wFFrZrl.png' />
 </div>
 
 ## Discription:
@@ -26,10 +26,10 @@
   - Users can read the entire King James Bible 
   <br />
   <div align='center'>
-    <img src='https://i.imgur.com/YNAYeB8.png?1' />
-    <img src='https://i.imgur.com/OfkDinK.png?1' />
-    <img src='https://i.imgur.com/YgMYZE3.png?1' />
-    <img src='https://i.imgur.com/8rWkLsz.png?1' />
+    <img src='https://i.imgur.com/dHJ8NHD.png' />
+    <img src='https://i.imgur.com/5vVxINd.png' />
+    <img src='https://i.imgur.com/eovwgNa.png' />
+    <img src='https://i.imgur.com/tNohAAI.png' />
   </div>
   <br />
 ## Future Updates:
