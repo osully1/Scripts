@@ -4,13 +4,14 @@ import {
     Text,
     View,
     TouchableOpacity,
+    Button,
     Dimensions,
     SafeAreaView,
     FlatList,
     ImageBackground
   } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ChapterScreen(props) {
 
@@ -120,6 +121,19 @@ export default function ChapterScreen(props) {
         <SafeAreaView style={styles.tabContainer}>
             <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}>
                 <Text style={styles.chapterHeader}>{bookSelected}</Text>
+                <View style={styles.backBtnContainer}>
+                  <TouchableOpacity 
+                    onPress={() => navigation.goBack()}
+                    style={styles.backBtn}
+                  >
+                    <View style={styles.backBtnGroup}>
+                      <View style={styles.backBtnCaretContainer}>
+                        <Ionicons name="chevron-back" size={25} color="#B2081C" style={styles.backCaret} />
+                      </View>
+                      <Text style={styles.backBtnText}> Books </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
                 <FlatList
                     data={chapterArray}
                     keyExtractor={(e, i) => i.toString()}
@@ -186,14 +200,15 @@ const styles = StyleSheet.create({
     },
     itemName: {
       fontWeight: 'bold',
-      fontSize: 20
+      fontSize: 20,
+      marginLeft: 8
     },
     chapterHeader: {
       alignSelf: 'center',
       fontSize: 20,
       fontWeight: '600',
       marginTop: 80,
-      marginBottom: 20,
+      marginBottom: 10,
     },
     backgroundImage: {
 
@@ -206,5 +221,31 @@ const styles = StyleSheet.create({
     caret: {
       fontSize: 23,
       right: 10
+    },
+    backBtnContainer: {
+      position: 'absolute',
+      marginTop: 80,
+      // marginLeft: 6,
+    },
+    backBtn: {
+      width: 100,
+      height: 40,
+      justifyContent: 'center'
+      // backgroundColor: 'red'
+    },
+    backBtnGroup: {
+      flexDirection: 'row'
+    },
+    backBtnText: {
+      fontWeight: '600',
+      fontSize: 18,
+      color: '#B2081C',
+      marginLeft: -8
+    },
+    backCaret: {
+      marginTop: -3
+    },
+    backBtnCaretContainer: {
+      height: 40,
     }
 })

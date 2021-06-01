@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontWeight: 'bold',
     fontSize: 20,
-    marginLeft: 10
+    marginLeft: 8
   },
   backgroundImage: {
 

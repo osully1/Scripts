@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { Text, View } from '../components/Themed';
 import NoteInput from '../components/NoteInput/NoteInput'
 import NoteListItem from '../components/NoteListItem/NoteListItem'
+import { Ionicons } from '@expo/vector-icons'
 
 export default function AddNoteScreen(props) {
 
@@ -49,25 +50,38 @@ export default function AddNoteScreen(props) {
     return (
       <ImageBackground source={require('../assets/images/parchmenttile.jpeg')} style={styles.backgroundImage}>
         <View style={styles.flatListView}>
-            <Text style={styles.chapterHeader}>{currentBook} {currentChapter}:{currentVerse}</Text>
-            <FlatList
-                data={props.noteState}
-                keyExtractor={(e, i) => i.toString()}
-                renderItem={renderItem}
-                ItemSeparatorComponent={separator}
-            />
-            <TouchableOpacity
-                style={styles.addButton}
-                onPress={() => {
-                  navigation.navigate('Add Note', {
-                    paramKey: [currentBook, currentChapter]
-                  })}}
+          <Text style={styles.chapterHeader}>{currentBook} {currentChapter}:{currentVerse}</Text>
+          <View style={styles.backBtnContainer}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={styles.backBtn}
             >
-                <Image
-                    style={styles.addButtonIcon}
-                    source={require('../assets/images/addnoteicon.png')}
-                />
+              <View style={styles.backBtnGroup}>
+                <View style={styles.backBtnCaretContainer}>
+                  <Ionicons name="chevron-back" size={25} color="#B2081C" style={styles.backCaret} />
+                </View>
+                <Text style={styles.backBtnText}> Verses </Text>
+              </View>
             </TouchableOpacity>
+          </View>
+          <FlatList
+              data={props.noteState}
+              keyExtractor={(e, i) => i.toString()}
+              renderItem={renderItem}
+              ItemSeparatorComponent={separator}
+          />
+          <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => {
+                navigation.navigate('Add Note', {
+                  paramKey: [currentBook, currentChapter]
+                })}}
+          >
+              <Image
+                  style={styles.addButtonIcon}
+                  source={require('../assets/images/addnoteicon.png')}
+              />
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     )
@@ -126,9 +140,9 @@ const styles = StyleSheet.create({
     },
     chapterHeader: {
         alignSelf: 'center',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: '600',
-        marginTop: 9,
+        marginTop: 52,
         marginBottom: 20
     },
     addButton: {
@@ -136,8 +150,8 @@ const styles = StyleSheet.create({
         width: 40,
         alignSelf: 'flex-start',
         position: 'absolute',
-        top: 1,
-        left: 5
+        top: 44,
+        right: 5
     },
     addButtonIcon: {
         height: 40,
@@ -165,5 +179,34 @@ const styles = StyleSheet.create({
     caret: {
       fontSize: 23,
       right: 10
+    },
+    backBtnContainer: {
+      position: 'absolute',
+      marginTop: 52,
+      backgroundColor: 'rgba(0,0,0,0)'
+      // marginLeft: 6,
+    },
+    backBtn: {
+      width: 100,
+      height: 40,
+      justifyContent: 'center',
+      backgroundColor: 'rgba(0,0,0,0)'
+    },
+    backBtnGroup: {
+      flexDirection: 'row',
+      backgroundColor: 'rgba(0,0,0,0)'
+    },
+    backBtnText: {
+      fontWeight: '600',
+      fontSize: 18,
+      color: '#B2081C',
+      marginLeft: -8
+    },
+    backCaret: {
+      marginTop: -3
+    },
+    backBtnCaretContainer: {
+      height: 40,
+      backgroundColor: 'rgba(0,0,0,0)'
     }
   });

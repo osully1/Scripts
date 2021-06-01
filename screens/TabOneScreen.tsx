@@ -85,13 +85,15 @@ export default function TabOneScreen() {
   return (
     <AddBibleStack.Navigator
       screenOptions={{
+        headerShown: false,
         cardStyle: { backgroundColor: 'rgb(50,50,50)' }
       }}
     >
       <AddBibleStack.Screen 
         name="Books"
         options={{
-          backgroundColor: 'blue'
+          headerStyle: {backgroundColor: 'rgb(50,50,50)'},
+          headerTintColor: 'white'
         }}
       >
         {(props) => <BookScreen {...props}

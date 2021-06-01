@@ -162,7 +162,9 @@ const styles = StyleSheet.create({
     },
     itemName: {
       fontSize: 18,
-      width: '85%'
+      width: '85%',
+      marginLeft: 8,
+      fontWeight: '500'
     },
     updateButton: {
       height: 35,
