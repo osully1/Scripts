@@ -7,10 +7,33 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
 import NoteUpdate from '../NoteInput/NoteUpdate'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+import { LongPressGestureHandler, State } from 'react-native-gesture-handler';
 
 export default function NoteListItem(props) {
+
+  const rightSwipeActions = () => {
+    return (
+      <View style={styles.deleteView}>
+        <TouchableOpacity
+          style={styles.deleteView}
+          onPress={() => {props.handleDelete(props.item.id)}}
+        >
+          <Text
+            style={{
+              color: '#000',
+              fontWeight: '600',
+              paddingHorizontal: 30,
+              paddingVertical: 20,
+            }}
+          >
+            Delete
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   const [editFormVisible, setEditFormVisible] = useState(false)
   const [ deleteFormVisible, setDeleteFormVisible ] = useState(false)
@@ -66,30 +89,34 @@ export default function NoteListItem(props) {
                 </View>
             </View>
             :
-            <View key={props.index} style={styles.itemContainer}>
-                <View style={styles.itemButton}>
-                    <Text style={styles.itemName}>{updateText}</Text>
-                    <View style={styles.buttonView}>
-                        <TouchableOpacity
-                            style={styles.updateButton}
-                            onPress={() =>  {toggleForm()}}
-                        >
-                            <Image 
-                                style={styles.updateImage}
-                                source={require('../../assets/images/editicon.png')} 
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {toggleDeleteForm()}}
-                        >
-                            <Image 
-                                style={styles.deleteImage}
-                                source={require('../../assets/images/erasericon.png')}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
+            <Swipeable
+              renderRightActions={rightSwipeActions}
+            >
+              <View key={props.index} style={styles.itemContainer}>
+                  <View style={styles.itemButton}>
+                      <Text style={styles.itemName}>{updateText}</Text>
+                      <View style={styles.buttonView}>
+                          <TouchableOpacity
+                              style={styles.updateButton}
+                              onPress={() =>  {toggleForm()}}
+                          >
+                              <Image 
+                                  style={styles.updateImage}
+                                  source={require('../../assets/images/editicon.png')} 
+                              />
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                              onPress={() => {toggleDeleteForm()}}
+                          >
+                              <Image 
+                                  style={styles.deleteImage}
+                                  source={require('../../assets/images/erasericon.png')}
+                              />
+                          </TouchableOpacity>
+                      </View>
+                  </View>
+              </View>
+            </Swipeable>
         }
     </View>
   )
@@ -193,5 +220,10 @@ const styles = StyleSheet.create({
     },
     deleteWarning: {
         fontSize: 25
-    }
+    },
+    deleteView: {
+      backgroundColor: 'transparent',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+    },
   });

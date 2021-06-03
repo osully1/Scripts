@@ -9,7 +9,6 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import { useEffect, useState } from 'react';
 import { Text, View } from '../components/Themed';
-import NoteInput from '../components/NoteInput/NoteInput'
 import NoteListItem from '../components/NoteListItem/NoteListItem'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -184,7 +183,6 @@ const styles = StyleSheet.create({
       position: 'absolute',
       marginTop: 52,
       backgroundColor: 'rgba(0,0,0,0)'
-      // marginLeft: 6,
     },
     backBtn: {
       width: 100,
@@ -208,5 +206,31 @@ const styles = StyleSheet.create({
     backBtnCaretContainer: {
       height: 40,
       backgroundColor: 'rgba(0,0,0,0)'
+    },
+    deleteView: {
+      backgroundColor: 'transparent',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+    },
+    deleteBtnContainer: {
+      height: '100%',
+      backgroundColor: 'transparent',
+      // justifyContent: 'space-around',
+      // alignContent: 'space-between',
+      // paddingHorizontal: 30,
+      // width: '100%'
+    },
+    deleteConfirm: {
+      borderStyle: 'solid',
+      backgroundColor: 'transparent',
+      height: '49%',
+      justifyContent: 'center',
+      paddingHorizontal: 30
+    },
+    deleteCancel: {
+      backgroundColor: 'transparent',
+      height: '49%',
+      justifyContent: 'center',
+      paddingHorizontal: 30
     }
   });
