@@ -13,27 +13,65 @@ import { LongPressGestureHandler, State } from 'react-native-gesture-handler';
 
 export default function NoteListItem(props) {
 
+  const onLongPress = (event) => {
+    if (event.nativeEvent.state === State.ACTIVE) {
+      props.handleDelete(props.item.id)
+    }
+  }
+
   const rightSwipeActions = () => {
     return (
-      <View style={styles.deleteView}>
-        <TouchableOpacity
+      <LongPressGestureHandler
+        onHandlerStateChange={onLongPress}
+        minDurationMs={800}
+      >
+        <View 
           style={styles.deleteView}
-          onPress={() => {props.handleDelete(props.item.id)}}
+        >
+          <View>
+            <Text
+              style={{
+                color: '#000',
+                fontWeight: '600',
+                paddingHorizontal: 30,
+              }}
+            >
+              Hold To
+            </Text>
+            <Text
+              style={{
+                color: '#000',
+                fontWeight: '600',
+                paddingHorizontal: 30,
+                paddingTop: 5,
+              }}
+            >
+              Delete
+            </Text>
+          </View>
+        </View>
+      </LongPressGestureHandler>
+    );
+  };
+
+  const leftSwipeActions = () => {
+    return (
+      <View style={styles.deleteView} >
+        <TouchableOpacity
+          onPress={() => toggleForm()}
         >
           <Text
             style={{
               color: '#000',
               fontWeight: '600',
-              paddingHorizontal: 30,
-              paddingVertical: 20,
+              paddingHorizontal: 15,
+              paddingTop: 5,
             }}
-          >
-            Delete
-          </Text>
+          >Edit Note</Text>
         </TouchableOpacity>
       </View>
-    );
-  };
+    )
+  }
 
   const [editFormVisible, setEditFormVisible] = useState(false)
   const [ deleteFormVisible, setDeleteFormVisible ] = useState(false)
@@ -91,6 +129,7 @@ export default function NoteListItem(props) {
             :
             <Swipeable
               renderRightActions={rightSwipeActions}
+              renderLeftActions={leftSwipeActions}
             >
               <View key={props.index} style={styles.itemContainer}>
                   <View style={styles.itemButton}>
@@ -226,4 +265,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'flex-end',
     },
+    deleteViewActive: {
+      backgroundColor: '#B2081C',
+      justifyContent: 'center',
+    }
   });
