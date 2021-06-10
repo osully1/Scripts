@@ -23,7 +23,7 @@ export default function TabOneScreen() {
   useEffect(() => {
     const acquireNotes = async () => {
       console.log('fetching data')
-      const notes = await fetch('http://1c1c3e061483.ngrok.io/notes')
+      const notes = await fetch('http://3a563351d9a8.ngrok.io/notes')
         .then(res => res.json())
       console.log(notes)
       setNoteState(notes)
@@ -33,7 +33,7 @@ export default function TabOneScreen() {
 
   const addNoteToList = async (noteObject) => {
     try {
-      const note = await fetch('http://1c1c3e061483.ngrok.io/notes', {
+      const note = await fetch('http://3a563351d9a8.ngrok.io/notes', {
         body: JSON.stringify(noteObject),
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ export default function TabOneScreen() {
 
   const handleUpdate = async (formInputs) => {
     try {
-      await fetch(`http://1c1c3e061483.ngrok.io/notes/${formInputs.id}`, {
+      await fetch(`http://3a563351d9a8.ngrok.io/notes/${formInputs.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'Application/json'
@@ -66,7 +66,7 @@ export default function TabOneScreen() {
 
   const handleDelete = async (noteId) => {
     try {
-      await fetch(`http://1c1c3e061483.ngrok.io/notes/${noteId}`, {
+      await fetch(`http://3a563351d9a8.ngrok.io/notes/${noteId}`, {
         method: 'DELETE'
       })
       const updatedNotes = noteState.filter(note => note.id !== noteId);
