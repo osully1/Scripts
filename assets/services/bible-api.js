@@ -24,6 +24,6 @@ export function fetchMegaVerse(book, chapter) {
     })
     .then(res => res.json())
     .catch(err => {
-        console.error(err);
+        console.error(err)
     });
 }
