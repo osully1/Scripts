@@ -10,7 +10,6 @@ import {
 import { useState } from 'react';
 import { Text, View } from '../components/Themed';
 import { useNavigation } from '@react-navigation/native'
-import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
 const {width, height} = Dimensions.get('screen')
 
