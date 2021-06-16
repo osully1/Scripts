@@ -7,7 +7,6 @@ import {
   FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { useEffect, useState } from 'react';
 import { Text, View } from '../components/Themed';
 import NoteListItem from '../components/NoteListItem/NoteListItem'
 import { Ionicons } from '@expo/vector-icons'
