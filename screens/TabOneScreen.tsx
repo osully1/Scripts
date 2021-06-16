@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, ImageBackground } from 'react-native';
 
-import { Text, View } from '../components/Themed';
 import { createStackNavigator } from '@react-navigation/stack';
 import BookScreen from '../screens/BookScreen'
 import ChapterScreen from '../screens/ChapterScreen';
