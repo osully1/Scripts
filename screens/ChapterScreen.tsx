@@ -177,9 +177,6 @@ const styles = StyleSheet.create({
       padding: 14,
       justifyContent: 'center'
     },
-    btnTabActive: {
-      backgroundColor: '#B2081C'
-    },
     textTab: {
       fontSize: 16
     },
