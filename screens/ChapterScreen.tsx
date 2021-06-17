@@ -94,7 +94,7 @@ export default function ChapterScreen(props) {
 
     const separator = () => {
         return <View style={{height: 1.5, backgroundColor: 'rgb(50,50,50)'}} />
-      };
+      }
 
     const renderItem = ({item, index}) => {
         return (
