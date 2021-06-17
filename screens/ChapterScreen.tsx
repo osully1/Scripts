@@ -177,12 +177,6 @@ const styles = StyleSheet.create({
       padding: 14,
       justifyContent: 'center'
     },
-    textTab: {
-      fontSize: 16
-    },
-    textTabActive: {
-      color: '#fff'
-    },
     itemContainer: {
       flexDirection: 'row',
       paddingVertical: 15,
