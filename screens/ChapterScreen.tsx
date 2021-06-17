@@ -164,11 +164,6 @@ const styles = StyleSheet.create({
       height: 1,
       width: '80%',
     },
-    listTab: {
-      flexDirection: 'row',
-      alignSelf: 'center',
-      marginBottom: 20,
-    },
     btnTab: {
       width: Dimensions.get('window').width / 2,
       flexDirection: 'row',
