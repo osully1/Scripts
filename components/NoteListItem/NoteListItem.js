@@ -134,6 +134,9 @@ export default function NoteListItem(props) {
               <View key={props.index} style={styles.itemContainer}>
                   <View style={styles.itemButton}>
                       <Text style={styles.itemName}>{updateText}</Text>
+
+                      {/* Below is the view for the old, ugly edit and delete buttons */}
+
                       {/* <View style={styles.buttonView}>
                           <TouchableOpacity
                               style={styles.updateButton}
