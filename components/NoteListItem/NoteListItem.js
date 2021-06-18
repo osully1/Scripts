@@ -134,7 +134,7 @@ export default function NoteListItem(props) {
               <View key={props.index} style={styles.itemContainer}>
                   <View style={styles.itemButton}>
                       <Text style={styles.itemName}>{updateText}</Text>
-                      <View style={styles.buttonView}>
+                      {/* <View style={styles.buttonView}>
                           <TouchableOpacity
                               style={styles.updateButton}
                               onPress={() =>  {toggleForm()}}
@@ -152,7 +152,7 @@ export default function NoteListItem(props) {
                                   source={require('../../assets/images/erasericon.png')}
                               />
                           </TouchableOpacity>
-                      </View>
+                      </View> */}
                   </View>
               </View>
             </Swipeable>
