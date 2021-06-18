@@ -1,12 +1,8 @@
 import * as React from 'react';
 import {
   Text,
-  View,
-  StyleSheet,
   TouchableOpacity,
-  TextInput
 } from 'react-native';
-import { useEffect, useState } from 'react';
 
 export default function NoteInput(props) {
     return (
