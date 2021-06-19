@@ -7,7 +7,6 @@ import {
   TextInput
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
 
 export default function NoteInput(props) {
 
