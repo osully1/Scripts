@@ -133,28 +133,6 @@ export default function NoteListItem(props) {
               <View key={props.index} style={styles.itemContainer}>
                   <View style={styles.itemButton}>
                       <Text style={styles.itemName}>{updateText}</Text>
-
-                      {/* Below is the view for the old, ugly edit and delete buttons */}
-
-                      {/* <View style={styles.buttonView}>
-                          <TouchableOpacity
-                              style={styles.updateButton}
-                              onPress={() =>  {toggleForm()}}
-                          >
-                              <Image 
-                                  style={styles.updateImage}
-                                  source={require('../../assets/images/editicon.png')} 
-                              />
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                              onPress={() => {toggleDeleteForm()}}
-                          >
-                              <Image 
-                                  style={styles.deleteImage}
-                                  source={require('../../assets/images/erasericon.png')}
-                              />
-                          </TouchableOpacity>
-                      </View> */}
                   </View>
               </View>
             </Swipeable>
