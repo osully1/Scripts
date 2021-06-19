@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function NoteInput(props) {
 
