@@ -24,7 +24,6 @@ export default function TabOneScreen() {
       console.log('fetching data')
       const notes = await fetch('http://3a563351d9a8.ngrok.io/notes')
         .then(res => res.json())
-      console.log(notes)
       setNoteState(notes)
     }
     acquireNotes()

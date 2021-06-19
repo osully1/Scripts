@@ -21,7 +21,6 @@ export default function AddNoteScreen(props) {
     const newNoteArray = props.noteState
     newNoteArray.push(noteText)
     props.setNoteState(newNoteArray)
-    console.log(newNoteArray)
   }
 
   return(

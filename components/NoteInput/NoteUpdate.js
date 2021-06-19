@@ -27,7 +27,6 @@ export default function NoteUpdate(props) {
         chapter: props.currentPassage.chapter,
         verse: props.currentPassage.verse
     })
-    // console.log(props.item)
   }, [props.item])
 
   const handleSubmit = () => {
