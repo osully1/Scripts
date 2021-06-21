@@ -6,7 +6,7 @@ const genesis11 = {
 
     3: `Then God said, “Let there be light,” and there was light.`,
 
-    4: `And God saw that the light was good. Then he separated the light from the darkness.`
+    4: `And God saw that the light was good. Then he separated the light from the darkness.`,
 
     5: `God called the light “day” and the darkness “night.” And evening passed and morning came, marking the first day.`,
 
