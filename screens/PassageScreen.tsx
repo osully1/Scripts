@@ -48,7 +48,7 @@ export default function ChapterScreen(props) {
             >
               <Text style={styles.itemName}>{item}</Text>
             </TouchableOpacity>
-          </View>
+          <View>
         )
       }
 
