@@ -50,7 +50,7 @@ export default function ChapterScreen(props) {
             </TouchableOpacity>
           </View>
         )
-      }
+      
 
     const separator = () => {
         return <View style={{height: 1.5, backgroundColor: 'rgb(50,50,50)'}} />
