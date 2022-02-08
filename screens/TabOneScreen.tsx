@@ -42,7 +42,7 @@ export default function TabOneScreen() {
     } catch (error) {
       console.log(error)
     }
-  },
+  }
 
   const handleUpdate = async (formInputs) => {
     try {
