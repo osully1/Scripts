@@ -7,18 +7,14 @@ import 'react-native-gesture-handler'
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { useState } from 'react'
 import { ColorSchemeName, Text } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
-import ChapterScreen from '../screens/ChapterScreen';
-import PassageScreen from '../screens/PassageScreen';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  const [ currentBook, setCurrentBook ] = useState('')
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
